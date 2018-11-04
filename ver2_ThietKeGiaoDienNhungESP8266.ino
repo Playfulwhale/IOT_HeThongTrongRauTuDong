@@ -101,12 +101,12 @@ void ledControl()
     tus = digitalRead(output_pin);
     if(tus== LOW)
     {
-      trangthai = "OFF";
+      trangthai = "Tắt đèn";
       digitalWrite(output_pin, 1);
     }
     if(tus== HIGH)
     {
-      trangthai = "ON";
+      trangthai = "Bật đèn";
       digitalWrite(output_pin, 0);
     }
     server.send(200, "text/plane", trangthai);
@@ -117,12 +117,12 @@ void ledControl1()
     Serial.println(tuss);
     if(tuss== "1")
     {
-      trangthai = "OFF";
+      trangthai = "Bật đèn";
       digitalWrite(output_pin, 1);
     }
     if(tuss== "0")
     {
-      trangthai = "ON";
+      trangthai = "Tắt đèn";
       digitalWrite(output_pin, 0);
     }
     server.send(200, "text/plane", trangthai);
@@ -132,7 +132,7 @@ void bomControl()
     tus = digitalRead(output_pin1);
     if(tus== LOW)
     {
-      trangthai = "Tắt bơm hehe";
+      trangthai = "Tắt bơm";
       digitalWrite(output_pin1, 1);
     }
     if(tus== HIGH)
