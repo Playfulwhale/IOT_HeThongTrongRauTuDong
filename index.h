@@ -59,7 +59,7 @@
           </div>
         </div>
         <div class="gio thongbao">
-          <span>Đèn sẽ <span id="thoi-gian-bat-den"></span> <span id="thoi-gian-tat-den"></span>
+          <span>Đèn <span id="thoi-gian-bat-den"></span> <span id="thoi-gian-tat-den"></span>
           </span>
         </div>
         <div class="btn-chung">
@@ -101,7 +101,7 @@
           </div>
         </div>
         <div class="gio thongbao">
-          <span>Bơm sẽ <span id="thoi-gian-bat-bom"></span> <span id="thoi-gian-tat-bom"></span>
+          <span>Bơm <span id="thoi-gian-bat-bom"></span> <span id="thoi-gian-tat-bom"></span>
           </span>
         </div>
         <div class="btn-chung">
@@ -440,22 +440,22 @@ body {
 </style>
   
   <script>
-    function selectorGioBatDenOnChange() {
+   function selectorGioBatDenOnChange() {
     hienThiBtnKhiClientSelect('selectorid-gio-bat-den', 'selectorid-gio-tat-den', 'set-thoi-gian-den-btn', 'btn-on');
-    hienThiThoiThongBaoThoiGian('selectorid-gio-bat-den', 'selectorid-phut-bat-den', 'thoi-gian-bat-den', 'bật lúc: ');
+    hienThiThoiThongBaoThoiGian('selectorid-gio-bat-den', 'selectorid-phut-bat-den', 'thoi-gian-bat-den', 'bật: ');
 }
 function selectorGioTatDenOnChange() {
     hienThiBtnKhiClientSelect('selectorid-gio-tat-den', 'selectorid-gio-bat-den', 'set-thoi-gian-den-btn', 'btn-on');
-    hienThiThoiThongBaoThoiGian('selectorid-gio-tat-den', 'selectorid-phut-tat-den', 'thoi-gian-tat-den', ' tắt lúc: ');
+    hienThiThoiThongBaoThoiGian('selectorid-gio-tat-den', 'selectorid-phut-tat-den', 'thoi-gian-tat-den', ' &nbsp&nbsp tắt: ');
 }
 
 function selectorGioBatBomOnChange() {
     hienThiBtnKhiClientSelect('selectorid-gio-bat-bom', 'selectorid-gio-tat-bom', 'set-thoi-gian-bom-btn', 'btn-bom');
-    hienThiThoiThongBaoThoiGian('selectorid-gio-bat-bom', 'selectorid-phut-bat-bom', 'thoi-gian-bat-bom', 'bật lúc: ');
+    hienThiThoiThongBaoThoiGian('selectorid-gio-bat-bom', 'selectorid-phut-bat-bom', 'thoi-gian-bat-bom', 'bật: ');
 }
 function selectorGioTatBomOnChange() {
     hienThiBtnKhiClientSelect('selectorid-gio-tat-bom', 'selectorid-gio-bat-bom', 'set-thoi-gian-bom-btn', 'btn-bom');
-    hienThiThoiThongBaoThoiGian('selectorid-gio-tat-bom', 'selectorid-phut-tat-bom', 'thoi-gian-tat-bom', ' tắt lúc: ');
+    hienThiThoiThongBaoThoiGian('selectorid-gio-tat-bom', 'selectorid-phut-tat-bom', 'thoi-gian-tat-bom', ' &nbsp&nbsp tắt: ');
 }
 
 
