@@ -280,7 +280,7 @@ select#selector1 {
     width: 100%;
     height: 100%;
     background: white;
-    height: 200px;
+    height: 160px;
     padding: 20px;
     box-sizing: border-box;
     margin-bottom: 30px;
@@ -359,14 +359,15 @@ select#selector1 {
 }
 
 .gio {
-    height: 20px;
+    height: 15px;
     padding: 20px 0px;
+    padding-bottom: 5px;
 }
 
 .gio.thongbao {
     text-align: left;
-    color: #5bc0de;
-    padding: 10px 0 30px 0;
+    color: black;
+    padding: 15px 0 24px 0;
 }
 
 .wrapper {}
