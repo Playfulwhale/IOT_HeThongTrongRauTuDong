@@ -1,6 +1,5 @@
   const char MAIN_page[] PROGMEM = R"=====(
-<!DOCTYPE html>
-<html lang="en">
+  <html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -11,180 +10,179 @@
 <body>
   <div class="container">
     <div class="wrapper">
-      <div class="title">
-        <h1>HỆ THỐNG TRỒNG RAU TỰ ĐỘNG</h1>
-        <div class="label-moitruong">MÔI TRƯỜNG</div>
-      </div>
-
-      <div class="moitruong">
-        <div class="child">
+      <div class="tren">
+        <div class="title">
+          <h1>HỆ THỐNG TRỒNG RAU TỰ ĐỘNG</h1>
+        </div>
+        <div class="duongke">
+          <div></div>
+        </div>
+        <div class="moitruong">
           <div class="left nhietdo">
-            <img src="cloud.svg">
-            <div class="lbl">50<span> &deg; C</span></div>
+            <div class="lbl" id="nhietdo">50<span> ° C</span></div>
             <div>Nhiệt độ</div>
           </div>
-          <div class="left duongke"></div>
           <div class="left doam">
-            <img src="drop.svg">
-            <div class="lbl">20<span> %</span></div>
+            <div class="lbl" id="doam">20<span> %</span></div>
             <div>Độ ẩm</div>
           </div>
+          <div class="clear"></div>
+        </div>
+        <div class="control">
+          <input type="button" name="" class="batden btn" value="Bật đèn" id="btn-den" onclick="ledControl()">
+          <input type="button" class="batbom btn" value="Bật bơm" id="btn-bom" onclick="bomControl()">
+          <div class="clear"></div>
+        </div>
+      </div>
+      <div class="box">
+        <div class="hengio hienthitab" id="tab-den">
+          <div class="den"> 
+            <div class="label-dieukhien active left" onclick="hienThiTab('tab-den', 'tab-bom')">ĐIỀU KHIỂN ĐÈN</div>
+            <div class="kedoc left">
+              <div class="doc"></div>
+            </div>
+            <div class="label-dieukhien left right" onclick="hienThiTab('tab-bom','tab-den')">ĐIỀU KHIỂN BƠM</div>
+            <div class="gio giobat">
+              <div class="label-gio-bat left">Giờ bật</div>
+              <div class="combobox left">
+                <select id="selectorid-gio-bat-den" class="combo" onchange="selectorGioBatDenOnChange()">
+                  <option value="0">Giờ</option>
+                </select>
+                <span>:</span>
+                <select id="selectorid-phut-bat-den" class="combo" onchange="selectorGioBatDenOnChange()">
+                  <option value="0">Phút</option>
+                </select>
+              </div>
+              <div class="clear"></div>
+            </div>
+            <div class="gio giotat">
+              <div class="label-gio-tat left">Giờ tắt</div>
+              <div class="combobox left">
+                <select id="selectorid-gio-tat-den" class="combo" onchange="selectorGioTatDenOnChange()">
+                  <option value="0">Giờ</option>
+                </select>
+                <span>:</span>
+                <select id="selectorid-phut-tat-den" class="combo" onchange="selectorGioTatDenOnChange()">
+                  <option value="0">Phút</option>
+                </select>
+              </div>
+              <div class="clear"></div>
+            </div>
+            <div class="gio thongbao gioden">
+              <span>Đèn <span id="thoi-gian-bat-den"></span> <span id="thoi-gian-tat-den"></span>
+              </span>
+            </div>
+            <div class="gio thongbao giobom">
+              <span>Bơm <span id="thoi-gian-bat-bom-den"></span> <span id="thoi-gian-tat-bom-den"></span>
+              </span>
+            </div>
+            <div class="btn-chung">
+              <div class="set-thoi-gian" id="set-thoi-gian-den-btn">
+                <input id="luu-den" class="btn btn-apply btn-hengio" type="button" value="Lưu" onclick="xuLyHenGioBatTat('selectorid-gio-bat-den','selectorid-phut-bat-den', 'selectorid-gio-tat-den', 'selectorid-phut-tat-den', 0)">
+                <input class="btn btn-cancel btn-hengio" type="button" value="Hủy" onclick="xuLyCancel(0)">
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+
+        <!-- ================= Bơm ==================== -->
+        <div class="hengio box-bom" id="tab-bom">
+          <div class="den">
+            <div class="label-dieukhien left" onclick="hienThiTab('tab-den', 'tab-bom')">ĐIỀU KHIỂN ĐÈN</div>
+            <div class="kedoc left">
+              <div class="doc"></div>
+            </div>
+            <div class="label-dieukhien active left right" onclick="hienThiTab('tab-bom','tab-den')">ĐIỀU KHIỂN BƠM</div>
+            <div class="gio giobat">
+              <div class="label-gio-bat left">Giờ bật</div>
+              <div class="combobox left">
+                <select id="selectorid-gio-bat-bom" class="combo" onchange="selectorGioBatBomOnChange()">
+                  <option value="0">Giờ</option>
+                </select>
+                <span>:</span>
+                <select id="selectorid-phut-bat-bom" class="combo" onchange="selectorGioBatBomOnChange()">
+                  <option value="0">Phút</option>
+                </select>
+              </div>
+              <div class="clear"></div>
+            </div>
+            <div class="gio giotat">
+              <div class="label-gio-tat left">Giờ tắt</div>
+              <div class="combobox left">
+                <select id="selectorid-gio-tat-bom" class="combo" onchange="selectorGioTatBomOnChange()">
+                  <option value="0">Giờ</option>
+                </select>
+                <span>:</span>
+                <select id="selectorid-phut-tat-bom" class="combo" onchange="selectorGioTatBomOnChange()">
+                  <option value="0">Phút</option>
+                </select>
+              </div>
+              <div class="clear"></div>
+            </div>
+            <div class="gio thongbao gioden">
+              <span>Đèn <span id="thoi-gian-bat-den-bom"></span> <span id="thoi-gian-tat-den-bom"></span>
+              </span>
+            </div>
+            <div class="gio thongbao giobom">
+              <span>Bơm <span id="thoi-gian-bat-bom"></span> <span id="thoi-gian-tat-bom"></span>
+              </span>
+            </div>
+            <div class="btn-chung">
+              <div class="set-thoi-gian" id="set-thoi-gian-bom-btn">
+                <input id="luu-bom" class="btn btn-apply btn-hengio" type="button" value="Lưu" onclick="xuLyHenGioBatTat('selectorid-gio-bat-bom','selectorid-phut-bat-bom', 'selectorid-gio-tat-bom', 'selectorid-phut-tat-bom', 1)">
+                <input class="btn btn-cancel btn-hengio" type="button" value="Hủy" onclick="xuLyCancel(1)">
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>
-      <div class="den">
-        <div class="label-dieukhien">ĐIỀU KHIỂN ĐÈN</div>
-        <div class="gio giobat">
-          <div class="label-gio-bat left">Giờ bật</div>
-          <div class="combobox right">
-            <select id="selectorid-gio-bat-den" class="combo" onchange="selectorGioBatDenOnChange()">
-              <option value="0">Giờ</option>
-            </select>
-            <span>:</span>
-            <select id="selectorid-phut-bat-den" class="combo" onchange="selectorGioBatDenOnChange()">
-              <option value="0">Phút</option>
-            </select>
-          </div>
-        </div>
-        <div class="gio giotat">
-          <div class="label-gio-tat left">Giờ tắt</div>
-          <div class="combobox right">
-            <select id="selectorid-gio-tat-den" class="combo" onchange="selectorGioTatDenOnChange()">
-              <option value="0">Giờ</option>
-            </select>
-            <span>:</span>
-            <select id="selectorid-phut-tat-den" class="combo" onchange="selectorGioTatDenOnChange()">
-              <option value="0">Phút</option>
-            </select>
-          </div>
-        </div>
-        <div class="gio thongbao">
-          <span>Đèn <span id="thoi-gian-bat-den"></span> <span id="thoi-gian-tat-den"></span>
-          </span>
-        </div>
-        <div class="btn-chung">
-          <input class="btn btn-on hienThi" id="btn-on" type="button" onclick="ledControl()"
-           value="Bật đèn" />
-          <div class="set-thoi-gian" id="set-thoi-gian-den-btn">
-            <input class="btn btn-apply" type="button" value="Lưu" onclick="xuLyHenGioBatTat('selectorid-gio-bat-den','selectorid-phut-bat-den', 'selectorid-gio-tat-den', 'selectorid-phut-tat-den', 'btn-on', 'Bật đèn', 'Tắt đèn', 'btn-on', 'set-thoi-gian-den-btn',0)" />
-            <input class="btn btn-cancel" type="button" value="Hủy" onclick="resetButton('selectorid-gio-bat-den', 'selectorid-gio-tat-den',0)" />
-          </div>
-        </div>
-      </div>
 
 
-
-      <div class="bom den">
-        <div class="label-dieukhien">ĐIỀU KHIỂN BƠM</div>
-        <div class="gio giobat">
-          <div class="label-gio-bat left">Giờ bật</div>
-          <div class="combobox right">
-            <select id="selectorid-gio-bat-bom" class="combo" onchange="selectorGioBatBomOnChange()">
-              <option value="0">Giờ</option>
-            </select>
-            <span>:</span>
-            <select id="selectorid-phut-bat-bom" class="combo" onchange="selectorGioBatBomOnChange()">
-              <option value="0">Phút</option>
-            </select>
-          </div>
-        </div>
-        <div class="gio giotat">
-          <div class="label-gio-tat left">Giờ tắt</div>
-          <div class="combobox right">
-            <select id="selectorid-gio-tat-bom" class="combo" onchange="selectorGioTatBomOnChange()">
-              <option value="0">Giờ</option>
-            </select>
-            <span>:</span>
-            <select id="selectorid-phut-tat-bom" class="combo" onchange="selectorGioTatBomOnChange()">
-              <option value="0">Phút</option>
-            </select>
-          </div>
-        </div>
-        <div class="gio thongbao">
-          <span>Bơm <span id="thoi-gian-bat-bom"></span> <span id="thoi-gian-tat-bom"></span>
-          </span>
-        </div>
-        <div class="btn-chung">
-          <input class="btn btn-on hienThi" id="btn-bom" type="button" onclick="bomControl()"
-           value="Bật bơm" />
-          <div class="set-thoi-gian" id="set-thoi-gian-bom-btn">
-            <input class="btn btn-apply" type="button" value="Lưu" onclick="xuLyHenGioBatTat('selectorid-gio-bat-bom','selectorid-phut-bat-bom', 'selectorid-gio-tat-bom', 'selectorid-phut-tat-bom', 'btn-bom', 'Bật bơm', 'Tắt bơm', 'btn-bom', 'set-thoi-gian-bom-btn',1)" />
-            <input class="btn btn-cancel" type="button" value="Hủy" onclick="resetButton('selectorid-gio-bat-bom', 'selectorid-gio-tat-bom',1)" />
-          </div>
-
-        </div>
-      </div>
     </div>
   </div>
+
+
 <style>
   *{
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
-.btn.btn-cancel:hover {
-    /* background-color: #c9302c; */
-    /* border-color: #ac2925; */
-    /* background-color: #c9302c; */
-    /* border-color: #ac2925; */
-    background-color: #c9302c;
-    border-color: #ac2925;
+.box {
+    position: relative;
+    width: 100%;
 }
 
-.btn.btn-cancel {
-    left: 90px;
-    /* top: 20px; */
-    background-color: #c9302c;
-    border-color: #ac2925;
-    background-color: #d9534f;
-    border-color: #d43f3a;
-    padding-left: 15px;
-    padding-right: 15px;
+.box-bom {
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 15px;
+    box-sizing: border-box;
+    position: relative;
 }
 
-.btn-on:hover {
-    color: #fff;
-    background-color: #31b0d5;
-    border-color: #269abc;
+.box-hengio {
+    position: relative;
+    width: 100%;
+}
+
+.doc {
+    height: 100%;
+    width: 1px;
+    background: #aaa3a3;
+    margin: auto;
 }
 
 .btn-chung {
-    position: relative;
-    /* display: inline-block; */
-}
-
-.btn {
-    position: absolute;
-    /* display: inline-block; */
-    padding: 6px 25px;
-    margin-bottom: 0;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.42857143;
     text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-image: none;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    color: #fff;
-    background-color: #5bc0de;
-    border-color: #46b8da;
-    box-shadow: 2px 4px 8px 1px rgba(0,0,0,0.2);
-    top: 0;
-    left: 0;
-    transform: translateY(-25%);
 }
 
 .combo {
-    /* display: block; */
     width: 64px;
     height: 30px;
     padding: 0px 5px;
@@ -195,287 +193,281 @@
     background-image: none;
     border: 1px solid #ccc;
     border-radius: 4px;
-    /* float: right; */
-}
-
-select#selector1 {
-    /* width: 75%; */
 }
 
 .combo:focus {
     border-color: #66ccff;
     outline: 0;
-    /* -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6); */
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
 }
 
+.tren {
+    padding: 0 15px;
+}
+
+.gio {
+    padding: 0 20px;
+    line-height: 24px;
+}
+
+.gio.giotat {
+    line-height: 40px;
+    margin-bottom: 10px;
+}
+
+.gio.giobat {
+    line-height: 40px;
+}
+
+.giobom {
+    margin-bottom: 10px;
+}
+
+.gio.thongbao.gioden {}
+
+.label-dieukhien.active {
+    background: #66ccff;
+    color: white;
+}
+
+.den {}
+
 .label-dieukhien {
-    text-align: left;
-    padding: 10px 0;
-    border-bottom: 1px solid #d9d4d4;
-}
-
-.den {
-    width: 100%;
-    /* height: 200px; */
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50px;
     background: white;
-    padding: 10px 30px;
     box-sizing: border-box;
-    margin-bottom: 30px;
-    border-radius: 2px;
+    border: 1px solid #66ccff;
+    text-align: center;
+    outline-width: 0px;
+    width: 45%;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-size: 90%;
+    width: 44% !important;
 }
 
-.child {
+.hengio {
+    border: 1px solid #66ccff;
+    padding: 15px;
+    display: none;
+}
+
+.hienthitab {
+    display: block;
+}
+
+.hengio.bom {
+    position: absolute;
+    top: 0;
     width: 100%;
-    height: 70%;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+    box-sizing: border-box;
 }
 
-.lbl span {
-    font-size: 18px;
+.clear {
+    clear: both;
+}
+
+.control {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-weight: 100;
+}
+
+.moitruong span {
+    font-size: 20px;
     position: relative;
     bottom: 12px;
 }
 
-.nhietdo .lbl {
-    /* font-size: 40px; */
-    /* margin-bottom: 30px; */
-    margin-right: 10%;
-    /* font-weight: 500; */
+.moitruong .lbl {
+    font-size: 50px;
+    color: #66ccff;
 }
 
-.lbl {
-    font-size: 40px;
-    margin-bottom: 30px;
-    /* margin-right: 10%; */
-    font-weight: 500;
+.left {
+    float: left;
+    width: 50%;
 }
 
-.left div:last-child {
-    color: gray;
-}
-
-.title {
+.kedoc {
+    width: 10%;
+    height: 40px;
+    margin: auto;
     position: relative;
-    padding-bottom: 30px;
 }
 
-.label-moitruong {}
+.label-dieukhien.left.right {
+    float: right;
+}
 
-.label-moitruong {
-    position: absolute;
-    top: 100%;
-    left: 25px;
-    background: #33cccc;
-    padding: 10px;
-    border-radius: 3px;
-    transform: translateY(-50%);
-    color: white;
-    box-shadow: 2px 4px 8px 1px rgba(0,0,0,0.2);
+.gio .left {
+    width: 30%;
+}
+
+.combobox.left {
+    text-align: right;
+    width: 70%;
+}
+.btn {
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50px;
+    background: white;
+    box-sizing: border-box;
+    border: 1px solid #66ccff;
+    text-align: center;
+    outline-width: 0px;
+    width: 45%;
+    cursor: pointer;
+}
+
+.btn-hengio {
+    width: 100px;
+    margin: 0 12px;
+}
+input.btn:disabled {
+    background: #ede9e9;
+}
+input.btn:disabled:hover {
+    background: #ede9e9;
+    color: grey;
+    cursor: unset;
+}
+input.batbom.btn {
+    float: right;
+}
+
+.batden.left {}
+
+input.control .left:focus {
+    border-radius: 0;
+}
+
+
+.btn:hover {
+    color: #fff;
+    background-color: #66ccff;
+}
+.btn:active:focus {
+    color: #fff;
+    background-color: #36b6dc;
+    border-color: #66ccff;
+}
+.batbom.left {
+    float: right;
+}
+
+.moitruong .left {
+    text-align: center;
+    padding: 20px 0;
+    padding-top: 10px;
 }
 
 .moitruong {
     width: 100%;
+}
+
+.duongke div {
+    width: 13%;
+    background: #66ccff;
     height: 100%;
-    background: white;
-    height: 160px;
-    padding: 20px;
-    box-sizing: border-box;
-    margin-bottom: 30px;
-    border-radius: 2px;
+    border-radius: 0 4px 4px 0;
 }
 
-.left {width: 49.62%;float: left;/* line-height: 200px; */position: relative;/* top: 50%; *//* transform: translateY(-50%); */}
-
-.gio .left {
-    /* float: left; */
-    text-align: left;
-    width: 30%;
-    /* padding: 20px 10px; */
-}
-
-.left.doam {
-    right: 25%;
-    transform: translateX(55%);
-}
-
-.left.nhietdo {
-    transform: translateX(-55%);
-    left: 25%;
-}
-
-.left img {
-    width: 70px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-}
-
-.doam img {
-    width: 50px;
-    /* top: 25%; */
-    /* left: 40%; */
-}
-
-.left.duongke {
-    border-left: 1px solid #d9d4d4;
-    width: 0;
-    height: 100%;
-    box-sizing: border-box;
-}
-.container{
-  width: 40%;
-  background: #66ccff;
-  margin: auto;
-  padding: 30px;
-  /* height: 100%; */
-  border-radius: 2px;
-  box-sizing: border-box;
-}
-.wrapper {
-    text-align: center;
-    /* padding: 20px; */
-    /* background: lightgreen; */
+.duongke {
     width: 100%;
-    height: 100%;
-    /* border-radius: 2px; */
+    background: #ede9e9;
+    height: 5px;
 }
 
-.btn-chung {
-    /* width: 100%; */
+.title {
+    font-size: 0.7rem;
+    text-align: center;
+    padding: 0 0 20px 0;
 }
 
-.combobox.right {
-    float: right;
-    width: 70%;
-    text-align: right;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+.wrapper {
+    width: 100%;
 }
 
-.gio {
-    height: 15px;
-    padding: 20px 0px;
-    padding-bottom: 5px;
+.container {
+    width: 40%;
+    margin: auto;
+    background: white;
+    padding: 15px;
+    box-sizing: border-box;
+    border: 1px solid blue;
 }
 
-.gio.thongbao {
-    text-align: left;
-    color: black;
-    padding: 15px 0 24px 0;
-}
-
-.wrapper {}
 
 body {
     font-family: Myriad Pro, sans-serif;
 }
-
-.wrapper h1 {
-    font-size: 1.3rem;
-    color: white;
-    font-weight: 100;
-    /* margin-bottom: 30px; */
-}
-.btn-on{
-    display: none;
-}
-.set-thoi-gian{
-    display: none;
-}
-.hienThi{
-    display: block;
-}
-.lblColor{
-    color: red;
-}
-@media only screen and (max-width: 600px) {
-    .container {
-        width: 100%;
-        /* padding: 30px 0; */
-    }
-    /* .den, .moitruong{
-        margin-bottom: 1px;
-    } */
-}
-/*
-@media only screen and (min-width: 600px) {
-
-    .container {
-        width: 70%;
-    }
-} */
-/* 
-@media only screen and (min-width: 768px) {
-    .container {
-        width: 100%;
-    }
-} */
-
-@media only screen and (max-width: 768px) and (min-width:600px) {
-    .container {
-        width: 60%;
-    }
-}
-
-
-
-/* @media only screen and (min-width: 900px) {
-    .container {
-        width: 40%;
-    }
-} */
-
-
 @media only screen and (min-width: 1200px) {
     .container {
         width: 30%;
     }
 }
+@media only screen and (max-width: 768px) and (min-width:600px) {
+    .container {
+        width: 60%;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 100%;
+    }
+    .label-dieukhien{font-size: 80%;}
+    .combo{
+        width: 60px;
+    padding: 0px 1px;
+    }
+}
+@media only screen and (max-width: 375px) {
+    .container {
+        width: 100%;
+    }
+    .label-dieukhien{font-size: 80%;}
+    .combo{
+        width: 63px;
+        padding: 0px 1px;
+        font-size: 13px;
+    }
+}
+
+
 </style>
+
+<script>
   
-  <script>
-   function selectorGioBatDenOnChange() {
-    hienThiBtnKhiClientSelect('selectorid-gio-bat-den', 'selectorid-gio-tat-den', 'set-thoi-gian-den-btn', 'btn-on');
-    hienThiThoiThongBaoThoiGian('selectorid-gio-bat-den', 'selectorid-phut-bat-den', 'thoi-gian-bat-den', 'bật: ');
-}
-function selectorGioTatDenOnChange() {
-    hienThiBtnKhiClientSelect('selectorid-gio-tat-den', 'selectorid-gio-bat-den', 'set-thoi-gian-den-btn', 'btn-on');
-    hienThiThoiThongBaoThoiGian('selectorid-gio-tat-den', 'selectorid-phut-tat-den', 'thoi-gian-tat-den', ' &nbsp&nbsp tắt: ');
-}
 
-function selectorGioBatBomOnChange() {
-    hienThiBtnKhiClientSelect('selectorid-gio-bat-bom', 'selectorid-gio-tat-bom', 'set-thoi-gian-bom-btn', 'btn-bom');
-    hienThiThoiThongBaoThoiGian('selectorid-gio-bat-bom', 'selectorid-phut-bat-bom', 'thoi-gian-bat-bom', 'bật: ');
-}
-function selectorGioTatBomOnChange() {
-    hienThiBtnKhiClientSelect('selectorid-gio-tat-bom', 'selectorid-gio-bat-bom', 'set-thoi-gian-bom-btn', 'btn-bom');
-    hienThiThoiThongBaoThoiGian('selectorid-gio-tat-bom', 'selectorid-phut-tat-bom', 'thoi-gian-tat-bom', ' &nbsp&nbsp tắt: ');
+// Thay đổi trạng thái bật tắt của bơm và đèn
+function ledChange(selectorId, onStatus, offStatus) {
+    var tinhieu = document.getElementById(selectorId).value; // Lấy giá trị của selector
+    if (tinhieu == onStatus) {
+        document.getElementById(selectorId).value = offStatus;
+    }
+    else {
+        document.getElementById(selectorId).value = onStatus;
+    }
 }
 
+function ledChangeDetail(tinhieu, selectorId, onStatus, offStatus) {
+    if (tinhieu == 1) {
+        document.getElementById(selectorId).value = offStatus;
+    }
+    else {
+        document.getElementById(selectorId).value = onStatus;
+    }
+}
 
-// Load thời gian vào combobox
-document.addEventListener("DOMContentLoaded", function () {
-    loadThoiGianHienThiLenCombobox(0, 23, "selectorid-gio-bat-den");
-    loadThoiGianHienThiLenCombobox(0, 59, "selectorid-phut-bat-den");
-
-    loadThoiGianHienThiLenCombobox(0, 23, "selectorid-gio-tat-den");
-    loadThoiGianHienThiLenCombobox(0, 59, "selectorid-phut-tat-den");
-
-    loadThoiGianHienThiLenCombobox(0, 59, "selectorid-phut-bat-bom");
-    loadThoiGianHienThiLenCombobox(0, 23, "selectorid-gio-bat-bom");
-
-    loadThoiGianHienThiLenCombobox(0, 23, "selectorid-gio-tat-bom");
-    loadThoiGianHienThiLenCombobox(0, 59, "selectorid-phut-tat-bom");
-});
-
-
-function loadThoiGianHienThiLenCombobox(giaTriMin, giaTriMax, SelectorId) {
+function loadThoiGianHienThiLenCombobox(giaTriMin, giaTriMax, SelectorId, giaTriSetThoiGian) {
     var x = document.getElementById(SelectorId);
     for (var i = giaTriMin; i <= giaTriMax; i++) {
         var option = document.createElement("option");
@@ -486,13 +478,29 @@ function loadThoiGianHienThiLenCombobox(giaTriMin, giaTriMax, SelectorId) {
         option.text = value;
         option.value = i;
         x.add(option);
+
+
     }
 
-}
+    // Tìm xem thời gian đã set thời gian hay chưa, nếu có thì select đúng chỗ đó
+    if(giaTriSetThoiGian >= 0)
+    {
+      var danhSachOption = document.querySelectorAll("#"+ SelectorId + " option");
+      console.log(danhSachOption);
+      for (var i = 1; i < danhSachOption.length ; i++) {
+        var giatri = danhSachOption[i].value;
+        if(giaTriSetThoiGian == giatri)
+        {
+          x.selectedIndex = i;
+          break;
+        }
+      }
+    }
+    else {
+        var danhSachOption = document.querySelectorAll("#" + SelectorId + " option");
+        x.selectedIndex = 0;
+    }
 
-
-function kiemTraClientSelectCombobox(selelectId) {
-    return (document.getElementById(selelectId).selectedIndex == 0) ? false : true;
 }
 // Ẩn hiện btn Lưu và Hủy, selelectIdCheck--sử dụng để xem 1 trong 2 giờ bật hoặc giờ tắt vẫn selected thì k remove class hiển thị
 function hienThiBtnKhiClientSelect(selelectId, selelectIdCheck, btnMuonHienThiId, btnMuonAnId) {
@@ -529,126 +537,288 @@ function hienThiThoiThongBaoThoiGian(selectorID_Gio, selectorID_Phut, lableChang
         document.getElementById(selectorID_Phut).selectedIndex = 0;
     }
 }
+var setGioBatDen = setGioTatDen = setGioBatBom = setGioTatBom = -1;
+var setPhutBatDen = setPhutTatDen = setPhutBatBom = setPhutTatBom = -1;
+var checkComboxBatDen = checkComboxTatDen = 0;
+var checkComboxBatBom = checkComboxTatBom = 0;
+function loadToanBoCombobox() {
+    loadThoiGianHienThiLenCombobox(0, 23, "selectorid-gio-bat-den", setGioBatDen);
+    loadThoiGianHienThiLenCombobox(0, 59, "selectorid-phut-bat-den", setPhutBatDen);
 
-// Nếu value = 0 => nút của đèn sẽ reset và ngược lại
-function resetButton(selectorID_GioBat, selectorID_GioTat, value) {
-    document.getElementById(selectorID_GioBat).selectedIndex = 0;
-    document.getElementById(selectorID_GioTat).selectedIndex = 0;
-    if (value == 0) {
+    loadThoiGianHienThiLenCombobox(0, 23, "selectorid-gio-tat-den", setGioTatDen);
+    loadThoiGianHienThiLenCombobox(0, 59, "selectorid-phut-tat-den", setPhutTatDen);
 
-        selectorGioBatDenOnChange();
-        selectorGioTatDenOnChange()
+    loadThoiGianHienThiLenCombobox(0, 59, "selectorid-phut-bat-bom", setPhutBatBom );
+    loadThoiGianHienThiLenCombobox(0, 23, "selectorid-gio-bat-bom", setGioBatBom);
+
+    loadThoiGianHienThiLenCombobox(0, 23, "selectorid-gio-tat-bom", setGioTatBom);
+    loadThoiGianHienThiLenCombobox(0, 59, "selectorid-phut-tat-bom", setPhutTatBom);
+}
+
+function loadComboboxBatDen() {
+  loadThoiGianHienThiLenCombobox(0, 23, "selectorid-gio-bat-den", setGioBatDen);
+    loadThoiGianHienThiLenCombobox(0, 59, "selectorid-phut-bat-den", setPhutBatDen);
+}
+function loadComboboxTatDen() {
+    loadThoiGianHienThiLenCombobox(0, 23, "selectorid-gio-tat-den", setGioTatDen);
+    loadThoiGianHienThiLenCombobox(0, 59, "selectorid-phut-tat-den", setPhutTatDen);
+}
+
+function loadComboboxBatBom() {
+    loadThoiGianHienThiLenCombobox(0, 59, "selectorid-phut-bat-bom", setPhutBatBom );
+    loadThoiGianHienThiLenCombobox(0, 23, "selectorid-gio-bat-bom", setGioBatBom);
+}
+function loadComboboxTatBom() {
+   loadThoiGianHienThiLenCombobox(0, 23, "selectorid-gio-tat-bom", setGioTatBom);
+    loadThoiGianHienThiLenCombobox(0, 59, "selectorid-phut-tat-bom", setPhutTatBom);
+}
+
+function loadComboboxDen() {
+   loadComboboxBatDen();
+   loadComboboxTatDen();
+}
+function loadComboboxBom() {
+   loadComboboxBatBom();
+   loadComboboxTatBom();
+    
+}
+//function getThoiGianHenGio() {
+//  
+//  setTimeout(function(){
+//    
+//    ledCheck();
+//  }, 2000);
+//  setTimeout(function(){
+//   
+//  }, 2000);
+//  
+//}
+
+// Load thời gian vào combobox
+document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(function(){
+      getGioBatDen();
+        setTimeout(function(){
+          getPhutBatDen();
+            setTimeout(function(){
+              getGioTatDen();
+                setTimeout(function(){
+                    getPhutTatDen(); 
+                      setTimeout(function(){
+                        ledCheck();
+                      }, 400);
+                        setTimeout(function(){
+                          loadComboboxDen();
+                          console.log("Giờ bật đèn: " + setGioBatDen);
+                          console.log("setPhutBatDen: " + setPhutBatDen);
+                          console.log("setGioTatDen: " + setGioTatDen);
+                          console.log("setPhutTatDen: " + setPhutTatDen);
+                          selectorGioBatDenOnChange();
+                          selectorGioTatDenOnChange();
+                          thayDoiDisableOfBtn(0, 0);
+                      }, 500);
+                }, 200);
+            }, 200);            
+        }, 200);
+    }, 200);
+    
+//                    -------- Bơm ----
+  setTimeout(function(){
+        getGioBatBom();
+         setTimeout(function(){
+            getPhutBatBom();
+             setTimeout(function(){
+                getGioTatBom();
+                 setTimeout(function(){
+                    getPhutTatBom();
+                    setTimeout(function(){
+                       bomCheck();
+                    }, 400);
+                      setTimeout(function(){
+                            loadComboboxBom();
+                            console.log("setGioBatBom: " + setGioBatBom);
+                            console.log("setPhutBatBom: " + setPhutBatBom);
+                            console.log("setGioTatBom: " + setGioTatBom);
+                            console.log("setPhutTatBom: " + setPhutTatBom);
+                             selectorGioBatBomOnChange();
+                             selectorGioTatBomOnChange();
+                             thayDoiDisableOfBtn(1, 0);
+                      }, 500);
+                  }, 200);
+             }, 200);
+         }, 200);
+  }, 500);
+   
+
+});
+
+
+// value: 0 -> đèn, 1-> bơm
+// hienthi: 0 -> disabled, 1-> bỏ disabled
+function thayDoiDisableOfBtn(value, hienthiDisable) {
+    if (hienthiDisable == 0) {
+        if (value == 0) {
+            document.getElementById("luu-den").disabled = true;
+        }
+        else if (value == 1) {
+            document.getElementById("luu-bom").disabled = true;
+        }
     }
     else {
+        if (value == 0) {
+            document.getElementById("luu-den").disabled = false;
+        }
+        else if (value == 1) {
+            document.getElementById("luu-bom").disabled = false;
+        }
+    }
+}
+
+function selectorGioBatDenOnChange() {
+    
+    //hienThiBtnKhiClientSelect('selectorid-gio-bat-den', 'selectorid-gio-tat-den', 'set-thoi-gian-den-btn', 'btn-on');
+    hienThiThoiThongBaoThoiGian('selectorid-gio-bat-den', 'selectorid-phut-bat-den', 'thoi-gian-bat-den', 'bật: ');
+    hienThiThoiThongBaoThoiGian('selectorid-gio-bat-den', 'selectorid-phut-bat-den', 'thoi-gian-bat-den-bom', 'bật: ');
+    thayDoiDisableOfBtn(0, 1);
+}
+function selectorGioTatDenOnChange() {
+   
+    //hienThiBtnKhiClientSelect('selectorid-gio-tat-den', 'selectorid-gio-bat-den', 'set-thoi-gian-den-btn', 'btn-on');
+    hienThiThoiThongBaoThoiGian('selectorid-gio-tat-den', 'selectorid-phut-tat-den', 'thoi-gian-tat-den', ' &nbsp&nbsp tắt: ');
+    hienThiThoiThongBaoThoiGian('selectorid-gio-tat-den', 'selectorid-phut-tat-den', 'thoi-gian-tat-den-bom', ' &nbsp&nbsp tắt: ');
+     thayDoiDisableOfBtn(0, 1);
+}
+
+function selectorGioBatBomOnChange() {
+    
+    //hienThiBtnKhiClientSelect('selectorid-gio-bat-bom', 'selectorid-gio-tat-bom', 'set-thoi-gian-bom-btn', 'btn-bom');
+    hienThiThoiThongBaoThoiGian('selectorid-gio-bat-bom', 'selectorid-phut-bat-bom', 'thoi-gian-bat-bom', 'bật: ');
+    hienThiThoiThongBaoThoiGian('selectorid-gio-bat-bom', 'selectorid-phut-bat-bom', 'thoi-gian-bat-bom-den', 'bật: ');
+    thayDoiDisableOfBtn(1, 1);
+}
+function selectorGioTatBomOnChange() {
+   
+    //hienThiBtnKhiClientSelect('selectorid-gio-tat-bom', 'selectorid-gio-bat-bom', 'set-thoi-gian-bom-btn', 'btn-bom');
+    hienThiThoiThongBaoThoiGian('selectorid-gio-tat-bom', 'selectorid-phut-tat-bom', 'thoi-gian-tat-bom', ' &nbsp&nbsp tắt: ');
+    hienThiThoiThongBaoThoiGian('selectorid-gio-tat-bom', 'selectorid-phut-tat-bom', 'thoi-gian-tat-bom-den', ' &nbsp&nbsp tắt: ');
+     thayDoiDisableOfBtn(1, 1);
+}
+
+
+
+function hienThiTab(idShowTab, idHideTab) {
+    document.getElementById(idShowTab).classList.add("hienthitab");
+    document.getElementById(idHideTab).classList.remove("hienthitab");
+}
+function kiemTraClientSelectCombobox(selelectId) {
+    return (document.getElementById(selelectId).selectedIndex == 0) ? false : true;
+}
+
+function xuLyCancel(value) {
+    setGioBatDen = setGioTatDen = setGioBatBom = setGioTatBom = -1;
+    setPhutBatDen = setPhutTatDen = setPhutBatBom = setPhutTatBom = -1;
+
+    if (value == 0) {
+        
+        loadThoiGianHienThiLenCombobox(0, 23, "selectorid-gio-bat-den", setGioBatDen);
+        loadThoiGianHienThiLenCombobox(0, 59, "selectorid-phut-bat-den", setPhutBatDen);
+
+        loadThoiGianHienThiLenCombobox(0, 23, "selectorid-gio-tat-den", setGioTatDen);
+        loadThoiGianHienThiLenCombobox(0, 59, "selectorid-phut-tat-den", setPhutTatDen);
+        selectorGioBatDenOnChange();
+        selectorGioTatDenOnChange();
+        thayDoiDisableOfBtn(0, 0);
+        ledControl1(1, setGioBatDen, setPhutBatDen);
+        setTimeout(function(){ 
+           ledControl1(0, setGioTatDen, setPhutTatDen);
+          }, 1000);
+       
+    }
+    else if (value == 1) {
+        
+        loadThoiGianHienThiLenCombobox(0, 59, "selectorid-phut-bat-bom", setGioBatBom);
+        loadThoiGianHienThiLenCombobox(0, 23, "selectorid-gio-bat-bom", setPhutBatBom);
+
+        loadThoiGianHienThiLenCombobox(0, 23, "selectorid-gio-tat-bom", setGioTatBom);
+        loadThoiGianHienThiLenCombobox(0, 59, "selectorid-phut-tat-bom", setPhutTatBom);
         selectorGioBatBomOnChange();
         selectorGioTatBomOnChange();
+        thayDoiDisableOfBtn(0, 1);
+        bomControl1(1, setGioBatBom, setPhutBatBom);
+        setTimeout(function(){ 
+          bomControl1(0, setGioTatBom, setPhutTatBom); 
+        }, 1000);
+        
     }
-
-}
-
-function onLyBtnReset(btnMuonHienThiId, btnMuonAnId) {
-    document.getElementById(btnMuonHienThiId).classList.add('hienThi');
-    document.getElementById(btnMuonAnId).classList.remove('hienThi');
-}
-
-
-
-// Đổi giờ sang giây
-function doiGioPhutSangGiay(gio, phut) {
-    var d = new Date();
-    var h = d.getHours();
-    var m = d.getMinutes();
-    var s = d.getSeconds();
-    gio -= h;
-    if (m > phut) {
-        phut = phut + 60 - m;
-        gio--;
-    }
-    else {
-        phut -= m;
-    }
-    var giay = (gio * 3600) + (phut * 60) - s;
-    if (giay < 0)
-        giay = 0;
-    return giay;
 }
 
 //selectorBtnId: btn hiển thị trạng thái đang on hay off
 //onStatus: chuỗi hiển thị ở btn đó
-function xuLyHenGioBatTat(selectorGioBat, selectorPhutBat, selectorGioTat, selectorPhutTat, selectorBtnId, onStatus, offStatus, btnMuonHienThiId, btnMuonAnId, value) {
-    var thoiGianBatDen_Gio, thoiGianBatDen_Phut;
-    var thoiGianTatDen_Gio, thoiGianTatDen_Phut;
-    thoiGianBatDen_Gio = document.getElementById(selectorGioBat).value;
-    thoiGianBatDen_Phut = document.getElementById(selectorPhutBat).value;
-    thoiGianTatDen_Gio = document.getElementById(selectorGioTat).value;
-    thoiGianTatDen_Phut = document.getElementById(selectorPhutTat).value;
+function xuLyHenGioBatTat(selectorGioBat, selectorPhutBat, selectorGioTat, selectorPhutTat, value) {
 
-    onLyBtnReset(btnMuonHienThiId, btnMuonAnId);
+    var thoiGianBat_Gio, thoiGianBat_Phut;
+    var thoiGianTat_Gio, thoiGianTat_Phut;
+    thoiGianBat_Gio = document.getElementById(selectorGioBat).value;
+    thoiGianBat_Phut = document.getElementById(selectorPhutBat).value;
+    thoiGianTat_Gio = document.getElementById(selectorGioTat).value;
+    thoiGianTat_Phut = document.getElementById(selectorPhutTat).value;
+
+    // set lai thoi gian khi click btn Luu
+    if (value == 0) {
+        checkComboxBatDen = checkComboxTatDen = 0;
+        setGioBatDen = thoiGianBat_Gio;
+        setPhutBatDen = thoiGianBat_Phut;
+        setGioTatDen = thoiGianTat_Gio;
+        setPhutTatDen = thoiGianTat_Phut;
+    }
+    else if (value == 1) {
+      checkComboxBatBom = checkComboxTatBom = 0;
+        setGioBatBom = thoiGianBat_Gio;
+        setPhutBatBom = thoiGianBat_Phut;
+        setGioTatBom = thoiGianTat_Gio;
+        setPhutTatBom = thoiGianTat_Phut;
+    }
+    
+    thayDoiDisableOfBtn(value, 0);
     if (kiemTraClientSelectCombobox(selectorGioBat)) {
-        var thoigianbatden = parseInt(doiGioPhutSangGiay(thoiGianBatDen_Gio, thoiGianBatDen_Phut)) * 1000;
         if (kiemTraClientSelectCombobox(selectorGioTat)) { // Có cả thời gian bật và thời gian tắt
-            var thoigiantatden = parseInt(doiGioPhutSangGiay(thoiGianTatDen_Gio, thoiGianTatDen_Phut)) * 1000;
-            setTimeout(function () {
-                if(value == 0)
-                    {
-                      ledControl1(1);
-                    }
-                    else
-                    {
-                      bomControl1(1)  
-                    }
-                setTimeout(function () {
-                    if(value == 0)
-                    {
-                      ledControl1(0);
-                    }
-                    else
-                    {
-                      bomControl1(0)  
-                    }
-                    resetButton(selectorGioBat, selectorGioTat, value);
-                }, thoigiantatden - thoigianbatden);
-            }, thoigianbatden);
+            if (value == 0) {
+              
+                ledControl1(1, thoiGianBat_Gio, thoiGianBat_Phut);
+                setTimeout(function(){ ledControl1(0, thoiGianTat_Gio, thoiGianTat_Phut); }, 1000);
+                
+            }
+            else if (value == 1) {
+                bomControl1(1, thoiGianBat_Gio, thoiGianBat_Phut);
+                setTimeout(function(){ bomControl1(0, thoiGianTat_Gio, thoiGianTat_Phut); }, 1000);
+                
+            }
         }
         else // Chỉ có thời gian bật đèn
         {
-            setTimeout(function () {
-                if(value == 0)
-                    {
-                      ledControl1(1);
-                    }
-                    else
-                    {
-                      bomControl1(1)  
-                    }
-                resetButton(selectorGioBat, selectorGioTat, value);
-            }, thoigianbatden);
+            if (value == 0) {
+                ledControl1(1, thoiGianBat_Gio, thoiGianBat_Phut);
+            }
+            else if (value == 1) {
+                bomControl1(1, thoiGianBat_Gio, thoiGianBat_Phut);
+            }
         }
     }
     else // Chỉ có thời gian tắt đèn
     {
-        var thoigiantatden = parseInt(doiGioPhutSangGiay(thoiGianTatDen_Gio, thoiGianTatDen_Phut)) * 1000;
-        loadThoiGianThongBao(selectorGioTat, selectorPhutTat, 'lableGioTatDen', 'lableThongbaoTatDen');
-        setTimeout(function () {
-            if(value == 0)
-                    {
-                      ledControl1(0);
-                    }
-                    else
-                    {
-                      bomControl1(0)  
-                    }
-            resetButton(selectorGioBat, selectorGioTat, value);
-        }, thoigiantatden);
+        if (value == 0) {
+            ledControl1(0, thoiGianTat_Gio, thoiGianTat_Phut);
+        }
+        else if (value == 1) {
+            bomControl1(0, thoiGianTat_Gio, thoiGianTat_Phut);
+        }
     }
+
+
+
 }
+</script>
 
-
-
-
-
-  </script>
-  
   <script>
     var xhttp = new XMLHttpRequest();
     function getData() {
@@ -676,35 +846,147 @@ function getDoAm() {
 
 
 
+function ledCheck() {
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("btn-den").value =
+      this.responseText;
+      console.log("ledStatus: " + this.responseText);
+    }
+  };
+  xhttp.open("GET", "ledCheckStatus", true);
+  xhttp.send();
+}
 
-function ledControl1(led) {
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("btn-on").value =
-      this.responseText;
-    }
-  };
-  xhttp.open("GET", "led1?stus="+led, true);
-  xhttp.send();
-}
-function ledControl() {
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("btn-on").value =
-      this.responseText;
-    }
-  };
-  xhttp.open("GET", "led", true);
-  xhttp.send();
-}
-function bomControl1(bom) {
+function bomCheck() {
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       document.getElementById("btn-bom").value =
       this.responseText;
     }
   };
-  xhttp.open("GET", "bom1?stus="+bom, true);
+  xhttp.open("GET", "bomCheckStatus", true);
+  xhttp.send();
+}
+
+
+function getGioBatDen() {
+  xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      setGioBatDen = parseInt(this.responseText);
+    }
+  };
+  xhttp.open("GET", "giobatden", true);
+  xhttp.send();
+}
+function getPhutBatDen() {
+  xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      setPhutBatDen = parseInt(this.responseText);
+    }
+  };
+  xhttp.open("GET", "phutbatden", true);
+  xhttp.send();
+}
+
+function getGioTatDen() {
+  console.log("OK có nhảy giờ tắt");
+  xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      setGioTatDen = parseInt(this.responseText);
+    }
+  };
+  xhttp.open("GET", "giotatden", true);
+  xhttp.send();
+}
+
+function getPhutTatDen() {
+  console.log("OK có nhảy phút tắt");
+  xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      setPhutTatDen = parseInt(this.responseText);
+      console.log("Phút tắt đèn nè: " + parseInt(this.responseText));
+    }
+  };
+  xhttp.open("GET", "phuttatden", true);
+  xhttp.send();
+}
+
+
+function getGioBatBom() {
+  xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      setGioBatBom = parseInt(this.responseText);
+    }
+  };
+  xhttp.open("GET", "giobatbom", true);
+  xhttp.send();
+}
+function getPhutBatBom() {
+  xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      setPhutBatBom = parseInt(this.responseText);
+    }
+  };
+  xhttp.open("GET", "phutbatbom", true);
+  xhttp.send();
+}
+
+function getGioTatBom() {
+  xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      setGioTatBom = parseInt(this.responseText);
+    }
+  };
+  xhttp.open("GET", "giotatbom", true);
+  xhttp.send();
+}
+function getPhutTatBom() {
+  xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      setPhutTatBom = parseInt(this.responseText);
+    }
+  };
+  xhttp.open("GET", "phuttatbom", true);
+  xhttp.send();
+}
+
+function ledControl1(led, gio, phut) {
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("btn-den").value =
+      this.responseText;
+    }
+  };
+  xhttp.open("GET", "led1?stus="+led+"&gio="+gio+"&phut="+phut, true);
+  xhttp.send();
+}
+function ledControl() {
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("btn-den").value =
+      this.responseText;
+    }
+  };
+  xhttp.open("GET", "led", true);
+  xhttp.send();
+}
+function bomControl1(bom, gio, phut) {
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("btn-bom").value =
+      this.responseText;
+    }
+  };
+  xhttp.open("GET", "bom1?stus="+bom+"&gio="+gio+"&phut="+phut, true);
   xhttp.send();
 }
 
@@ -719,12 +1001,66 @@ function bomControl() {
   xhttp.send();
 }
 
+
+setInterval(function () {
+    var d = new Date();
+    var h = d.getHours();
+    var m = d.getMinutes();
+    if (((m == setPhutBatDen) && (h == setGioBatDen))) {
+      if(checkComboxBatDen == 0)
+      {
+        console.log("Da vo day");
+        checkComboxBatDen++;
+        ledCheck();
+        setGioBatDen =setPhutBatDen  = -1;
+        loadComboboxBatDen();
+        selectorGioBatDenOnChange();
+      }
+       
+    }
+    if(((m == setPhutTatDen) && (h == setGioTatDen)))
+    {
+      if(checkComboxTatDen == 0)
+      {
+          checkComboxTatDen++;
+          ledCheck();
+          setGioTatDen = setPhutTatDen = -1;
+          loadComboboxTatDen();
+          selectorGioTatDenOnChange();
+      }
+      
+    }
+    if (((m == setPhutBatBom)&& (h == setGioBatBom))) {
+      if(checkComboxBatBom == 0)
+      {
+        checkComboxBatBom++;
+        bomCheck();
+        setGioBatBom =setPhutBatBom  = -1;
+        loadComboboxBatBom();
+        selectorGioBatBomOnChange();
+      }
+        
+    }
+    if(((m == setPhutTatBom) && (h == setGioTatBom)))
+    {
+      if(checkComboxTatBom == 0)
+      {
+        checkComboxTatBom++;
+        bomCheck();
+        setGioTatBom = setPhutTatBom = -1;
+        loadComboboxTatBom();
+        selectorGioTatBomOnChange();
+      }
+        
+    }
+}, 1000);
+
   // Hàm thực hiện gửi yêu cầu của client cứ 1s gửi 1 lần
-  setInterval(function() {
-    getData();
-    getDoAm();
-  }, 2000);
-  
+//  setInterval(function() {
+//    getData();
+//    getDoAm();
+//  }, 2000);
+//  
 </script>
 
 
