@@ -19,11 +19,11 @@
         </div>
         <div class="moitruong">
           <div class="left nhietdo">
-            <div class="lbl" id="nhietdo">50<span> ° C</span></div>
+            <div class="lbl"> <span id="nhietdo">50</span><span class="kyhieu"> ° C</span></div>
             <div>Nhiệt độ</div>
           </div>
           <div class="left doam">
-            <div class="lbl" id="doam">20<span> %</span></div>
+            <div class="lbl"> <span id="doam">20</span><span class="kyhieu"> %</span></div>
             <div>Độ ẩm</div>
           </div>
           <div class="clear"></div>
@@ -279,7 +279,7 @@ h1 {
     font-weight: 100;
 }
 
-.moitruong span {
+span.kyhieu {
     font-size: 20px;
     position: relative;
     bottom: 12px;
@@ -647,7 +647,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   }, 200);
              }, 200);
          }, 200);
-  }, 500);
+  }, 2000);
    
 
 });
@@ -743,7 +743,7 @@ function xuLyCancel(value) {
         loadThoiGianHienThiLenCombobox(0, 59, "selectorid-phut-tat-bom", setPhutTatBom);
         selectorGioBatBomOnChange();
         selectorGioTatBomOnChange();
-        thayDoiDisableOfBtn(0, 1);
+        thayDoiDisableOfBtn(1, 0);
         bomControl1(1, setGioBatBom, setPhutBatBom);
         setTimeout(function(){ 
           bomControl1(0, setGioTatBom, setPhutTatBom); 
@@ -1009,12 +1009,11 @@ setInterval(function () {
     if (((m == setPhutBatDen) && (h == setGioBatDen))) {
       if(checkComboxBatDen == 0)
       {
-        console.log("Da vo day");
         checkComboxBatDen++;
         ledCheck();
-        setGioBatDen =setPhutBatDen  = -1;
-        loadComboboxBatDen();
-        selectorGioBatDenOnChange();
+//        setGioBatDen =setPhutBatDen  = -1;
+//        loadComboboxBatDen();
+//        selectorGioBatDenOnChange();
       }
        
     }
@@ -1022,22 +1021,23 @@ setInterval(function () {
     {
       if(checkComboxTatDen == 0)
       {
-          checkComboxTatDen++;
           ledCheck();
-          setGioTatDen = setPhutTatDen = -1;
-          loadComboboxTatDen();
-          selectorGioTatDenOnChange();
+          
+          checkComboxTatDen++;          
+//          setGioTatDen = setPhutTatDen = -1;
+//          loadComboboxTatDen();
+//          selectorGioTatDenOnChange();
       }
       
     }
     if (((m == setPhutBatBom)&& (h == setGioBatBom))) {
       if(checkComboxBatBom == 0)
       {
-        checkComboxBatBom++;
         bomCheck();
-        setGioBatBom =setPhutBatBom  = -1;
-        loadComboboxBatBom();
-        selectorGioBatBomOnChange();
+        checkComboxBatBom++;        
+//        setGioBatBom =setPhutBatBom  = -1;
+//        loadComboboxBatBom();
+//        selectorGioBatBomOnChange();
       }
         
     }
@@ -1045,22 +1045,42 @@ setInterval(function () {
     {
       if(checkComboxTatBom == 0)
       {
-        checkComboxTatBom++;
         bomCheck();
-        setGioTatBom = setPhutTatBom = -1;
-        loadComboboxTatBom();
-        selectorGioTatBomOnChange();
+        checkComboxTatBom++;
+//        setGioTatBom = setPhutTatBom = -1;
+//        loadComboboxTatBom();
+//        selectorGioTatBomOnChange();
       }
         
     }
 }, 1000);
+function getNhietDo_DoAm_Online() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            // Typical action to be performed when the document is ready:
+            var data = JSON.parse(xhttp.responseText);
+            document.getElementById("nhietdo").innerHTML = data.main.temp;
+            document.getElementById("doam").innerHTML = data.main.humidity;
+            console.log(data.main.temp);
+        }
+    };
+    xhttp.open("GET", "http://api.openweathermap.org/data/2.5/weather?q=hanoi&units=metric&appid=c044699838eecf54fcc9670da0c52b6b", true);
 
+    xhttp.send();
+
+}
   // Hàm thực hiện gửi yêu cầu của client cứ 1s gửi 1 lần
 //  setInterval(function() {
 //    getData();
 //    getDoAm();
 //  }, 2000);
 //  
+
+  setInterval(function() {
+   getNhietDo_DoAm_Online();
+  }, 2000);
+  
 </script>
 
 

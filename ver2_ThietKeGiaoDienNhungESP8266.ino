@@ -14,8 +14,8 @@ NTPClient n(u,"0.asia.pool.ntp.org", 7 * 3600);
 // Su dung cam bien DHT11
 #define DHTTYPE DHT22
 #define DHTPIN D1
-#define output_pin D8
-#define output_pin1 D7
+#define output_pin D5
+#define output_pin1 D6
 int tus=0, temp = 0, humi = 0;
 String trangthai = "OFF", tuss="-1";
 
@@ -29,8 +29,10 @@ DHT dht(DHTPIN, DHTTYPE);
 // Thong so WiFi nha ban
 //const char* ssid = "R&D WORKSHOP";
 //const char* password = "174238hqv";
-const char* ssid = "Ank";
-const char* password = "1234567890";
+const char* ssid = "Mechanical HQV";
+const char* password = "174238HQV";
+//const char* ssid = "Ank";
+//const char* password = "1234567890";
 //const char* ssid = "Đỗ Huy Có Dấu";
 //const char* password = "12345678910111213";
 //const char* ssid = "mynet";
@@ -39,6 +41,8 @@ const char* password = "1234567890";
 //const char* password = "88888888";
 //const char* ssid = "Quynh Duong";
 //const char* password = "0985820470";
+//const char* ssid = "KhongWifi";
+//const char* password = "hue00111";
 
 // Tao server
 ESP8266WebServer server(80);
@@ -112,7 +116,7 @@ void loop(void){
            {
                  digitalWrite(output_pin, 1);
                  
-                 gioHenBatDen = phutHenBatDen = -1;
+                 //gioHenBatDen = phutHenBatDen = -1;
            }
        }
   }
@@ -123,7 +127,7 @@ void loop(void){
            if((phutHenTatDen == phutHienTai))
            {
                  digitalWrite(output_pin, 0);
-                 gioHenTatDen = phutHenTatDen = -1;
+                 //gioHenTatDen = phutHenTatDen = -1;
            }
        }
   }
@@ -136,7 +140,7 @@ void loop(void){
            if((phutHenBatBom == phutHienTai))
            {
                  digitalWrite(output_pin1, 1);
-                 gioHenBatBom = phutHenBatBom = -1;
+                 //gioHenBatBom = phutHenBatBom = -1;
            }
        }
   }
@@ -148,26 +152,26 @@ void loop(void){
            if((phutHenTatBom == phutHienTai))
            {
                  digitalWrite(output_pin1, 0);
-                 gioHenTatBom = phutHenTatBom = -1;
+                 //gioHenTatBom = phutHenTatBom = -1;
            }
        }
   }
 
   
-  
-  Serial.println("=========================");
-  Serial.printf("Gio hien tai: ");
-     Serial.println(gioHienTai);
-     Serial.printf("Phut hien tai: ");
-     Serial.println(phutHienTai);
-  Serial.printf("Gio bat hen den: ");
-     Serial.println(gioHenBatDen);
-      Serial.printf("Phut bat hen den: ");
-     Serial.println(phutHenBatDen);
-     Serial.printf("Gio tat hen den: ");
-     Serial.println(gioHenTatDen);
-      Serial.printf("Phut tat hen den: ");
-     Serial.println(phutHenTatDen);
+//  
+//  Serial.println("=========================");
+//  Serial.printf("Gio hien tai: ");
+//     Serial.println(gioHienTai);
+//     Serial.printf("Phut hien tai: ");
+//     Serial.println(phutHienTai);
+//  Serial.printf("Gio bat hen den: ");
+//     Serial.println(gioHenBatDen);
+//      Serial.printf("Phut bat hen den: ");
+//     Serial.println(phutHenBatDen);
+//     Serial.printf("Gio tat hen den: ");
+//     Serial.println(gioHenTatDen);
+//      Serial.printf("Phut tat hen den: ");
+//     Serial.println(phutHenTatDen);
 }
 
 void handleRoot()
